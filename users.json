@@ -1,0 +1,16 @@
+[
+ {
+  "name": "clark",
+  "email": "super@gmail.com",
+  "age": 26,
+  "banned": false,
+  "id": 1076075103523689075
+ },
+ {
+  "name": "oliver",
+  "email": "arrow@gmail.com",
+  "age": 29,
+  "banned": false,
+  "id": 899932986839527131
+ }
+]
