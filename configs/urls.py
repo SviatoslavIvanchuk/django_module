@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from cars.views import CarsList, CarbyId
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('cars', CarsList.as_view()),
+    path('cars/<int:id>', CarbyId.as_view()),
 ]
