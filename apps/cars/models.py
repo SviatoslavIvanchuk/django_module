@@ -8,6 +8,6 @@ class CarsModel(models.Model):
 
     brand = models.CharField(max_length=25)
     year = models.IntegerField()
-    seats = models.IntegerField()
-    body_type = models.CharField(max_length=25)
-    engine = models.FloatField()
+    price = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
