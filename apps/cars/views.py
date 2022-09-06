@@ -12,6 +12,9 @@ class CarsList(ListAPIView):
     permission_classes = (IsAdminUser,)
 
     def get_queryset(self):
+        auto_park_id = self.request.query_params.get('autoParkId')
+        if auto_park_id:
+            return self.queryset.filter(auto_park_id=auto_park_id)
         queryset = super().get_queryset()
         queryset = queryset.order_by('id')
         return queryset

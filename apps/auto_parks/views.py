@@ -1,5 +1,5 @@
 from rest_framework import status
-from rest_framework.generics import GenericAPIView, ListCreateAPIView
+from rest_framework.generics import GenericAPIView, ListCreateAPIView, RetrieveDestroyAPIView
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
 
@@ -29,3 +29,8 @@ class AutoParkAddCarView(GenericAPIView):
         serializer.is_valid(raise_exception=True)
         serializer.save(auto_park=auto_park)
         return Response(serializer.data, status.HTTP_201_CREATED)
+
+
+class AutoParkRetrieveDestroy(RetrieveDestroyAPIView):
+    queryset = AutoParkModel.objects.all()
+    serializer_class = AutoParkSerializer
