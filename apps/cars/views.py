@@ -1,22 +1,20 @@
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.permissions import IsAdminUser
 
 from .filters import params_filter
 from .models import CarsModel
 from .serializers import CarSerializer
 
 
-class CarsList(ListCreateAPIView):
+class CarsList(ListAPIView):
     queryset = CarsModel.objects.all()
     serializer_class = CarSerializer
-
-    def get_serializer(self, *args, **kwargs):
-        if self.request.method == 'GET':
-            return CarSerializer(*args, **kwargs)
-        return super().get_serializer(*args, **kwargs)
+    permission_classes = (IsAdminUser,)
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        return params_filter(queryset, self.request)
+        queryset = queryset.order_by('id')
+        return queryset
 
 
 class CarById(RetrieveUpdateDestroyAPIView):
