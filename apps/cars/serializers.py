@@ -13,3 +13,9 @@ class CarSerializerForGetAll(ModelSerializer):
     class Meta:
         model = CarsModel
         fields = ('id', 'brand', 'year')
+
+
+class AddPhotoToCarSerializer(ModelSerializer):
+    class Meta:
+        model = CarsModel
+        fields = ('photo',)
