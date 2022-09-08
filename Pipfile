@@ -14,6 +14,7 @@ tzdata = "==2022.2"
 djangorestframework-simplejwt = "*"
 pillow = "*"
 django-dotenv = "*"
+env = "*"
 
 [dev-packages]
 isort = "*"
