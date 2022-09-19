@@ -13,6 +13,7 @@ class CarsModel(models.Model):
 
     class Meta:
         db_table = 'cars'
+        ordering = ('id',)
 
     brand = models.CharField(max_length=25)
     year = models.IntegerField(validators=(v.MinValueValidator(1990), v.MaxValueValidator(date.today().year)), default=2000)

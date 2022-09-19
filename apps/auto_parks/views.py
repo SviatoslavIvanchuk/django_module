@@ -1,20 +1,21 @@
 from rest_framework import status
 from rest_framework.generics import GenericAPIView, ListCreateAPIView, RetrieveDestroyAPIView
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
+from rest_framework.permissions import IsAdminUser, IsAuthenticated, AllowAny
 from rest_framework.response import Response
 
 from ..cars.serializers import CarSerializer
 from .models import AutoParkModel
 from .serializers import AutoParkSerializer
-
+from .filters import AutoParkFilter
 
 class AutoParkListCreate(ListCreateAPIView):
     queryset = AutoParkModel.objects.all()
     serializer_class = AutoParkSerializer
+    filterset_class = AutoParkFilter
 
     def get_permissions(self):
         if self.request.method == 'GET':
-            return IsAdminUser(),
+            return AllowAny(),
         return super().get_permissions()
 
 

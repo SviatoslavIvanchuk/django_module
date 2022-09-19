@@ -1,14 +1,18 @@
 from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView, UpdateAPIView
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUser, AllowAny
 
 from .models import CarsModel
 from .serializers import AddPhotoToCarSerializer, CarSerializer
+from core.pagination.page_paginator import PagePagination
+from .filters import CarFilter
 
 
 class CarsList(ListAPIView):
-    queryset = CarsModel.objects.get_by_price_gt(5000)
+    queryset = CarsModel.objects.all()
     serializer_class = CarSerializer
-    permission_classes = (IsAdminUser,)
+    permission_classes = (AllowAny,)
+    pagination_class = PagePagination
+    filterset_class = CarFilter
 
     # def get_queryset(self):
     #     auto_park_id = self.request.query_params.get('autoParkId')

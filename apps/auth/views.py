@@ -8,7 +8,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework import status
 from core.services.jwt_service import JwtService, RecoveryToken
 from .serializers import EmailSerializer, PasswordSerializer
-from core.services.email_service import EmailService
+from core.services.email_service import EmailService, ActivateToken
 
 
 UserModel: Type[User] = get_user_model()
@@ -18,7 +18,7 @@ class ActivateUserView(GenericAPIView):
 
     def get(self, *args, **kwargs):
         token = kwargs.get('token')
-        user = JwtService.valid_token(token)
+        user = JwtService.valid_token(token, ActivateToken)
         user.is_active = True
         user.save()
         return Response(status=status.HTTP_200_OK)
