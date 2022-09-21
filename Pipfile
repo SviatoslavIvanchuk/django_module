@@ -16,6 +16,7 @@ pillow = "*"
 django-dotenv = "*"
 env = "*"
 django-filter = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 isort = "*"

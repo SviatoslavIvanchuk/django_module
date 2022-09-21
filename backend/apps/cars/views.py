@@ -1,5 +1,5 @@
 from rest_framework.generics import ListAPIView, RetrieveUpdateDestroyAPIView, UpdateAPIView
-from rest_framework.permissions import IsAdminUser, AllowAny
+from rest_framework.permissions import AllowAny
 
 from .models import CarsModel
 from .serializers import AddPhotoToCarSerializer, CarSerializer
@@ -26,7 +26,7 @@ class CarsList(ListAPIView):
 class CarById(RetrieveUpdateDestroyAPIView):
     queryset = CarsModel.objects.all()
     serializer_class = CarSerializer
-
+    permission_classes = (AllowAny,)
 
 class AddPhotoCarView(UpdateAPIView):
     queryset = CarsModel.objects.all()
